@@ -15,6 +15,7 @@
     "axios": "^1.7.7",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.4",
+    "pm2": "^5.4.2",
     "vue": "^3.5.12",
     "vue-router": "latest",
     "vue-spinner": "^1.0.4"
