@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.1.5",
+    "@pinia/nuxt": "^0.5.5",
+    "axios": "^1.7.7",
     "nuxt": "^3.13.0",
+    "pinia": "^2.2.4",
     "vue": "^3.5.12",
     "vue-router": "latest",
-    "vue-spinner": "^1.0.4",
-    "@pinia/nuxt": "^0.5.5",
-    "pinia": "^2.2.4"
+    "vue-spinner": "^1.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
-    "axios": "^1.7.7"
+    "tailwindcss": "^3.4.13"
   }
 }
