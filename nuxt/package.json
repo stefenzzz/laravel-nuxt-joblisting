@@ -14,7 +14,9 @@
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest",
-    "vue-spinner": "^1.0.4"
+    "vue-spinner": "^1.0.4",
+    "@pinia/nuxt": "^0.5.5",
+    "pinia": "^2.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
