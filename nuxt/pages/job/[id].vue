@@ -99,23 +99,25 @@ const submitForm = async(formData)=>{
         <form v-if="authStore.user" @submit.prevent="submitForm(formData)" class="bg-white p-6 rounded-md shadow-xl max-w-md mt-10 space-y-6" ref="form">
             <h3 class="text-green-500">Apply Now</h3>
             <div>
-                <input placeholder="Name" name="name" v-model="formData.name" class="custom-input"/>
-                <span v-if=" errors.name?.[0]" class="error">{{ errors.name?.[0] }}</span>
+              <input placeholder="Name" name="name" v-model="formData.name" class="custom-input"/>
+              <span v-if=" errors.name?.[0]" class="error">{{ errors.name?.[0] }}</span>
             </div>
 
             <div>
-                
-            <input placeholder="Email" name="email" v-model="formData.email" class="custom-input"/>
-            <span v-if=" errors.email?.[0]" class="error">{{ errors.email?.[0] }}</span>
+              <input placeholder="Email" name="email" v-model="formData.email" class="custom-input"/>
+              <span v-if=" errors.email?.[0]" class="error">{{ errors.email?.[0] }}</span>
             </div>
 
-            <div>
-                
-            <input type="number" placeholder="Contact" name="contact_number" v-model="formData.contact" class="custom-input"/>
-            <span v-if=" errors.contact?.[0]" class="error">{{ errors.contact?.[0] }}</span>
+            <div>         
+              <input type="number" placeholder="Contact" name="contact_number" v-model="formData.contact" class="custom-input"/>
+              <span v-if=" errors.contact?.[0]" class="error">{{ errors.contact?.[0] }}</span>
             </div>
-            <textarea placeholder="Description" name="description" v-model="formData.description" cosl="10" rows="10" class="custom-input"/>
-            <span v-if=" errors.description?.[0]" class="error">{{ errors.description?.[0] }}</span>
+
+            <div>   
+              <textarea placeholder="Description" name="description" v-model="formData.description" cosl="10" rows="10" class="custom-input"/>
+              <span v-if=" errors.description?.[0]" class="error">{{ errors.description?.[0] }}</span>
+            </div>
+            
             <button class="button-green">Submit application</button>
         </form>
         <div v-else class="bg-white p-6 rounded-lg shadow-xl w-fit mt-5">
