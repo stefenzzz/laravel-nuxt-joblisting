@@ -24,7 +24,11 @@ const actions = {
 
         try{
             
-            const response = await this.axios().get('/api/user');
+            const response = await this.axios().get('/api/user',{
+                headers:{
+                    Authorization: `Bearer ${ localStorage.getItem('token') }`
+                }
+            });
             
             this.user = response.data;
             
@@ -74,7 +78,11 @@ const actions = {
     async logout(){
         try{
             this.isLoading = true;
-            const response = await this.axios().post('/api/logout');
+            const response = await this.axios().post('/api/logout',{},{
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
             
             this.user = null;
             this.token = null;
