@@ -10,7 +10,7 @@ definePageMeta({
 
 <template>
 <section class="max-w-[1366px] mx-auto mt-20">
-    <JobsTable v-if="authUser.user.role.code === 'admin' " />
-    <JobsTable v-if="authUser.user.role.code === 'company'" :user="authUser.user.id" />
+    <JobsTable v-if="authUser.user?.role.code === 'admin' " />
+    <JobsTable v-if="authUser.user?.role.code === 'company'" :user="authUser.user.id" />
 </section>
 </template>
