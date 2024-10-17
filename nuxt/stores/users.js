@@ -14,11 +14,7 @@ const actions = {
      },
     async getAllUsers(){
         try{
-            const response = await this.axios().get('/api/users',{
-                headers:{
-                    Authorization: `Bearer ${ localStorage.getItem('token') }`
-                }
-            });
+            const response = await this.axios().get('/api/users');
             this.users = response.data;
             
         }catch(e){
@@ -27,11 +23,7 @@ const actions = {
     },
     async getUser(id){
         try{
-            const response = await this.axios().get(`/api/users/${id}`,{
-                headers:{
-                    Authorization: `Bearer ${ localStorage.getItem('token') }`
-                }
-            });
+            const response = await this.axios().get(`/api/users/${id}`);
             this.user = response.data;
             
         }catch(e){
@@ -40,11 +32,7 @@ const actions = {
     },
     async updateUser(form){
         try{
-            const response = await this.axios().put(`/api/users/${form.id}`, form, {
-                headers:{
-                    Authorization: `Bearer ${ localStorage.getItem('token') }`
-                }
-            });
+            const response = await this.axios().put(`/api/users/${form.id}`, form);
             this.user = response.data;
             return true;
             
@@ -55,11 +43,7 @@ const actions = {
     async deleteUser(id)
     {
         try{
-            const response = await this.axios().delete(`/api/users/${id}`, {}, {
-                headers:{
-                    Authorization: `Bearer ${ localStorage.getItem('token') }`
-                }
-            });
+            const response = await this.axios().delete(`/api/users/${id}`);
             return true;          
         }catch(e){
             if(e.response.status === 422 || e.response.status === 401) this.errors = e.response.data.errors;
