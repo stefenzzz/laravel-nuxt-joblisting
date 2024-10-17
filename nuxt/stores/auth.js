@@ -1,26 +1,30 @@
-import axiosClient from "~/helpers/axiosClient";
-
 
 const state = ()=>{
     return {
         user:null,
         isLoading: false,
         token: null,
-        errors: {}
+        errors: {},
     }
 }
 
 
 const actions = {
-    loadToken(){
-        if (process.client) {
+    axios(){
+       return useNuxtApp().$axios; // use axios from plugins/axios.js
+    },
+    loadToken(){     
+        if(import.meta.client){
             this.token = localStorage.getItem('token');
-          }
+        }   
     },
     async getUser(){    
-        if(!localStorage.getItem('token')) return;    
+
+        if(!localStorage.getItem('token')) return;  
+
         try{
-            const response = await axiosClient.get('/api/user',{
+            
+            const response = await this.axios().get('/api/user',{
                 headers:{
                     Authorization: `Bearer ${ localStorage.getItem('token') }`
                 }
@@ -35,7 +39,7 @@ const actions = {
     async register(formData){
         try{
             this.isLoading = true;
-            const response = await axiosClient.post('/api/register', formData);
+            const response = await this.axios().post('/api/register', formData);
             
             localStorage.setItem('token', response.data.token);
             this.user = response.data.user;
@@ -55,7 +59,7 @@ const actions = {
 
         try{
             this.isLoading = true;
-            const response = await axiosClient.post(`/api/login`,formData);
+            const response = await this.axios().post(`/api/login`,formData);
             this.user = response.data.user;
             localStorage.setItem('token', response.data.token);
             return true;
@@ -74,7 +78,7 @@ const actions = {
     async logout(){
         try{
             this.isLoading = true;
-            const response = await axiosClient.post('/api/logout',{},{
+            const response = await this.axios().post('/api/logout',{},{
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

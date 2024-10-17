@@ -1,4 +1,3 @@
-import axiosClient from "~/helpers/axiosClient";
 
 
 const state = ()=>{
@@ -11,13 +10,15 @@ const state = ()=>{
 }
 
 const actions = {
-
+    axios(){
+        return useNuxtApp().$axios;
+     },
     async getPostJobs(link = null, active = null, search = null, user = null)
     {
         try{
             this.jobPostLoading = true;
             const url = link ?? '/api/jobs'
-            const response = await axiosClient.get( url, { params: { active: active, search: search, user: user} } );
+            const response = await this.axios().get( url, { params: { active: active, search: search, user: user} } );
             this.postJobs = response.data;
             
         }catch(e){
@@ -30,7 +31,7 @@ const actions = {
     {
         try{
             
-            const response = await axiosClient.get( `api/jobs/${id}` );
+            const response = await this.axios().get( `api/jobs/${id}` );
             this.postJob = response.data;
             
         }catch(e){
@@ -43,7 +44,7 @@ const actions = {
     {
         try{
             this.jobPostLoading = true;
-            const response = await axiosClient.put(`/api/jobs/${formData.id}`, formData,{
+            const response = await this.axios().put(`/api/jobs/${formData.id}`, formData,{
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -63,7 +64,7 @@ const actions = {
 
         try{
             this.jobPostLoading = true;
-            const response = await axiosClient.post(`/api/jobs/`, formData,{
+            const response = await this.axios().post(`/api/jobs/`, formData,{
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -82,7 +83,7 @@ const actions = {
     },
     async updateViews(id){
         try{
-            const response = await axiosClient.post(`/api/jobs/views/${id}`);
+            const response = await this.axios().post(`/api/jobs/views/${id}`);
             return true;
 
         }catch(e){
@@ -93,7 +94,7 @@ const actions = {
     },
     async updateImpressions(id){
         try{
-            const response = await axiosClient.post(`/api/jobs/impressions/${id}`);
+            const response = await this.axios().post(`/api/jobs/impressions/${id}`);
             return true;
 
         }catch(e){
@@ -106,7 +107,7 @@ const actions = {
     async deletePost(id){
         try{
             this.jobPostLoading = true;
-            const response = await axiosClient.delete(`/api/jobs/${id}`);
+            const response = await this.axios().delete(`/api/jobs/${id}`);
             return true;
 
         }catch(e){
@@ -121,7 +122,7 @@ const actions = {
     {
         try{
             this.jobPostLoading = true;
-            const response = await axiosClient.post(`/api/jobs/apply/${formData.jobId}`,formData);
+            const response = await this.axios().post(`/api/jobs/apply/${formData.jobId}`,formData);
             return true;
 
         }catch(e){

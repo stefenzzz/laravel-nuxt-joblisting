@@ -16,7 +16,7 @@ class Roles
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if(!$request->user()->hasRole($roles)){
-            return response()->json(['message' => 'You dont have permission to access this route']);
+            return response()->json(['message' => 'You dont have permission to access this route'], 401);
         }
         return $next($request);
     }

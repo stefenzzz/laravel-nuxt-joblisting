@@ -1,6 +1,3 @@
-import axiosClient from "~/helpers/axiosClient";
-
-
 
 const state = ()=>{
     return {
@@ -12,10 +9,12 @@ const state = ()=>{
 }
 
 const actions = {
-
+    axios(){
+        return useNuxtApp().$axios;
+     },
     async getAllUsers(){
         try{
-            const response = await axiosClient.get('/api/users',{
+            const response = await this.axios().get('/api/users',{
                 headers:{
                     Authorization: `Bearer ${ localStorage.getItem('token') }`
                 }
@@ -28,7 +27,7 @@ const actions = {
     },
     async getUser(id){
         try{
-            const response = await axiosClient.get(`/api/users/${id}`,{
+            const response = await this.axios().get(`/api/users/${id}`,{
                 headers:{
                     Authorization: `Bearer ${ localStorage.getItem('token') }`
                 }
@@ -41,7 +40,7 @@ const actions = {
     },
     async updateUser(form){
         try{
-            const response = await axiosClient.put(`/api/users/${form.id}`, form, {
+            const response = await this.axios().put(`/api/users/${form.id}`, form, {
                 headers:{
                     Authorization: `Bearer ${ localStorage.getItem('token') }`
                 }
@@ -56,7 +55,7 @@ const actions = {
     async deleteUser(id)
     {
         try{
-            const response = await axiosClient.delete(`/api/users/${id}`, {}, {
+            const response = await this.axios().delete(`/api/users/${id}`, {}, {
                 headers:{
                     Authorization: `Bearer ${ localStorage.getItem('token') }`
                 }
