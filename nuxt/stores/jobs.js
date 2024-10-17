@@ -44,11 +44,7 @@ const actions = {
     {
         try{
             this.jobPostLoading = true;
-            const response = await this.axios().put(`/api/jobs/${formData.id}`, formData,{
-                headers:{
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            });
+            const response = await this.axios().put(`/api/jobs/${formData.id}`, formData);
             console.log(response.data);
             return true;
 
@@ -64,11 +60,7 @@ const actions = {
 
         try{
             this.jobPostLoading = true;
-            const response = await this.axios().post(`/api/jobs/`, formData,{
-                headers:{
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            });
+            const response = await this.axios().post(`/api/jobs/`, formData);
             console.log(response.data);
             return true;
 
